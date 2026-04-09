@@ -24,6 +24,12 @@ export async function POST(req) {
     return NextResponse.json({ success: true, message: "Registration successful" }, { status: 201 });
   } catch (error) {
     console.error("Register Error:", error);
+    if (error.code === 'ER_ACCESS_DENIED_ERROR' || error.code === 'ECONNREFUSED') {
+      return NextResponse.json({ error: "Local database not running or credentials invalid" }, { status: 500 });
+    }
+    if (error.code === 'ER_BAD_DB_ERROR') {
+      return NextResponse.json({ error: "Database 'vertex_db' does not exist. Please run SETUP.sql" }, { status: 500 });
+    }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
