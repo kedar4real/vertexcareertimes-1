@@ -1,124 +1,92 @@
+'use client'
+
+import { useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export const metadata = {
-    title: 'Login - Vertex Career Times',
-    description: 'Login to your Vertex Career Times student portal.',
+function LoginForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const registered = searchParams.get('registered')
+  const [formData, setFormData] = useState({ mobile: '', password: '' })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Login failed')
+      window.location.href = '/' // hard refresh to update UI state
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100 hover-lift">
+      {registered && <div className="mb-4 text-sm text-green-700 bg-green-50 p-3 rounded-lg border border-green-200">Registration successful! Please log in.</div>}
+      {error && <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg border border-red-100">{error}</div>}
+      
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <div>
+          <label className="block text-sm font-semibold text-gray-700">Mobile Number</label>
+          <input required type="tel" pattern="[0-9]{10}" placeholder="10-digit mobile number" className="mt-1.5 block w-full border border-gray-300 rounded-lg py-2.5 px-3 focus:ring-blue-500 focus:border-blue-500 transition-colors shadow-sm" value={formData.mobile} onChange={e => setFormData({...formData, mobile: e.target.value})} />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700">Password</label>
+          <input required type="password" placeholder="••••••••" className="mt-1.5 block w-full border border-gray-300 rounded-lg py-2.5 px-3 focus:ring-blue-500 focus:border-blue-500 transition-colors shadow-sm" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+        </div>
+        
+        <div className="flex items-center justify-end">
+          <Link href="/forgot-password" className="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors">
+            Forgot your password?
+          </Link>
+        </div>
+
+        <div>
+          <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-md text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-all duration-300 hover:-translate-y-0.5">
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </div>
+      </form>
+      
+      <div className="mt-8">
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+          <div className="relative flex justify-center text-sm"><span className="px-3 bg-white text-gray-500 font-medium">New to Vertex?</span></div>
+        </div>
+        <div className="mt-6 text-center">
+          <Link href="/register" className="font-bold text-blue-600 hover:text-blue-800 transition-colors">Create a free account</Link>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default function LoginPage() {
-    return (
-        <div className="min-h-[calc(100vh-140px)] bg-[#F8FAFC] flex items-center justify-center p-4">
-            <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
+export default function Login() {
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col pt-16 pb-24 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md animate-fade-in-up">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 tracking-tight">Welcome Back!</h2>
+        <p className="mt-2 text-center text-sm text-gray-600">Log in to manage your admission profile</p>
+      </div>
 
-                {/* Left Side: Brand/Info */}
-                <div className="w-full md:w-5/12 bg-gradient-to-br from-blue-600 to-blue-800 p-10 text-white flex flex-col justify-between hidden md:flex relative overflow-hidden">
-                    {/* Background decoration */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4"></div>
-
-                    <div className="relative z-10">
-                        <Link href="/" className="inline-block mb-12">
-                            <span className="text-2xl font-bold tracking-tight">Vertex Career Times</span>
-                        </Link>
-                        <h2 className="text-3xl font-bold mb-4 leading-tight">Welcome Back to Your Portal</h2>
-                        <p className="text-blue-100 text-sm leading-relaxed">
-                            Track your CAP options, access premium predictors, and connect with your counsellor instantly.
-                        </p>
-                    </div>
-
-                    <div className="relative z-10">
-                        <div className="flex items-center gap-3">
-                            <div className="flex -space-x-2">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="w-8 h-8 rounded-full bg-blue-500 border-2 border-blue-700 flex items-center justify-center text-xs font-bold text-white shadow-sm">
-                                        {String.fromCharCode(64 + i)}
-                                    </div>
-                                ))}
-                            </div>
-                            <span className="text-sm font-medium text-blue-50">Join 9,500+ students</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Side: Login Form */}
-                <div className="w-full md:w-7/12 p-8 md:p-12 relative">
-                    <div className="mb-8">
-                        <h1 className="text-2xl font-bold text-gray-900 mb-2">Student Login</h1>
-                        <p className="text-gray-500 text-sm">Please sign in to access your dashboard.</p>
-                    </div>
-
-                    <form className="space-y-5">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                                Email Address
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
-                                </div>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="you@example.com"
-                                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="flex items-center justify-between mb-1.5">
-                                <label className="block text-sm font-medium text-gray-700" htmlFor="password">
-                                    Password
-                                </label>
-                                <Link href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
-                                    Forgot Password?
-                                </Link>
-                            </div>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                                </div>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="••••••••"
-                                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <input
-                                id="remember_me"
-                                name="remember_me"
-                                type="checkbox"
-                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
-                            />
-                            <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700 cursor-pointer">
-                                Remember me for 30 days
-                            </label>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="w-full flex items-center justify-center py-3 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg shadow-blue-500/30"
-                        >
-                            Sign in to Dashboard
-                        </button>
-                    </form>
-
-                    <div className="mt-8 text-center text-sm text-gray-600">
-                        Don&apos;t have an account?{' '}
-                        <Link href="/register" className="font-bold text-blue-600 hover:text-blue-700">
-                            Create an account
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <Suspense fallback={<div>Loading form...</div>}>
+          <LoginForm />
+        </Suspense>
+      </div>
+    </div>
+  )
 }

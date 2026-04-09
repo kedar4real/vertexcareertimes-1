@@ -1,169 +1,99 @@
-import React from 'react'
+'use client'
 
-export const metadata = {
-    title: 'Contact Us - Vertex Career Times',
-    description: 'Get in touch with our expert admission counsellors.'
-}
+import { useState } from 'react'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
-export default function ContactPage() {
-    return (
-        <div className="min-h-screen bg-[#F8FAFC]">
-            {/* Page Header */}
-            <div className="bg-white border-b border-gray-100 py-16 md:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-semibold rounded-full mb-4 shadow-sm border border-blue-100">
-                        Reach Out Safely
-                    </span>
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
-                        Contact Our Experts
-                    </h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                        Have questions about MHT-CET, CAP rounds, or branch selection? Our expert counselling team is here to assist you every step of the way.
-                    </p>
-                </div>
-            </div>
+export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', subject: '', message: '' })
+  const [status, setStatus] = useState(null)
+  const [loading, setLoading] = useState(false)
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8">
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setStatus(null)
+    
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to send message')
+      
+      setStatus({ type: 'success', message: 'Message sent successfully! We will get back to you soon.' })
+      setFormData({ name: '', subject: '', message: '' }) // Clear form
+    } catch (err) {
+      setStatus({ type: 'error', message: err.message })
+    } finally {
+      setLoading(false)
+    }
+  }
 
-                    {/* Contact Information */}
-                    <div className="space-y-8">
-                        <h2 className="text-2xl font-bold text-gray-900">Get in Touch</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            We respond to all inquiries within 24 hours. For immediate assistance during active CAP rounds, please call our admission hotline.
-                        </p>
-
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-600 shadow-sm border border-gray-100 shrink-0">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900">Direct Contact</h3>
-                                    <p className="text-gray-600 mt-1"><a href="tel:+917588186264" className="hover:text-blue-600 transition-colors">+91 75881 86264</a></p>
-                                    <p className="text-gray-600"><a href="tel:+918999356450" className="hover:text-blue-600 transition-colors">+91 89993 56450</a></p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-600 shadow-sm border border-gray-100 shrink-0">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900">Email Us</h3>
-                                    <p className="text-gray-600 mt-1">support@vertexcareertimes.com</p>
-                                    <p className="text-sm text-gray-500 mt-1">For general inquiries and academic documents.</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-600 shadow-sm border border-gray-100 shrink-0">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900">Our Office</h3>
-                                    <p className="text-gray-600 mt-1 leading-relaxed">
-                                        Vertex Educational Counseling,<br />
-                                        Pune, Maharashtra, India.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Business Hours */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm mt-8">
-                            <h3 className="font-bold text-gray-900 mb-4">Support Hours</h3>
-                            <ul className="space-y-2 text-sm text-gray-600">
-                                <li className="flex justify-between border-b border-gray-50 pb-2">
-                                    <span>Monday - Friday</span>
-                                    <span className="font-medium text-gray-900">10:00 AM - 7:00 PM</span>
-                                </li>
-                                <li className="flex justify-between border-b border-gray-50 pb-2">
-                                    <span>Saturday</span>
-                                    <span className="font-medium text-gray-900">10:00 AM - 4:00 PM</span>
-                                </li>
-                                <li className="flex justify-between pt-1">
-                                    <span>Sunday</span>
-                                    <span className="font-medium text-red-500">During CAP Rounds Only</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Contact Form */}
-                    <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 p-8">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
-                        <form className="space-y-5">
-                            <div className="grid sm:grid-cols-2 gap-5">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="name">Full Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        placeholder="Enter your name"
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="phone">Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        placeholder="Provide WhatsApp No."
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="name@example.com"
-                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="subject">Subject / Inquiry Type</label>
-                                <select
-                                    id="subject"
-                                    name="subject"
-                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                >
-                                    <option value="cap-guidance">CAP Routine Guidance</option>
-                                    <option value="direct-second-year">Direct Second Year (DSE)</option>
-                                    <option value="nri-quota">NRI / Management Quota</option>
-                                    <option value="other">Other Queries</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="message">Your Message</label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    rows={4}
-                                    placeholder="How can we help you?"
-                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all resize-none"
-                                ></textarea>
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="w-full py-4 mt-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg shadow-blue-500/30 text-lg"
-                            >
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <Header />
+      
+      <main className="max-w-4xl mx-auto py-16 px-6 lg:px-8 animate-fade-in-up">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Contact Us</h1>
+          <p className="mt-3 text-lg text-gray-600 font-medium">We're here to answer all your admission-related queries.</p>
         </div>
-    )
+
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden hover-lift" style={{ animationDelay: '0.1s' }}>
+          <div className="px-6 py-8 sm:p-10">
+            {status && (
+              <div className={`mb-6 p-4 rounded-lg font-medium text-sm border ${status.type === 'success' ? 'bg-green-50 text-green-800 border-green-200' : 'bg-red-50 text-red-800 border-red-200'}`}>
+                {status.message}
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700">Full Name</label>
+                <input required type="text" className="mt-2 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your full name" />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700">Subject</label>
+                <input required type="text" className="mt-2 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} placeholder="What is this regarding?" />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700">Message</label>
+                <textarea required rows={5} className="mt-2 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="How can we help you?" />
+              </div>
+
+              <div>
+                <button type="submit" disabled={loading} className="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-full shadow-md text-base font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-all duration-300 hover:-translate-y-0.5">
+                  {loading ? 'Sending Message...' : 'Send Message'}
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <div className="bg-gray-50 px-6 py-6 border-t border-gray-100 sm:px-10 flex flex-col sm:flex-row items-center justify-between">
+            <div className="flex items-center text-sm font-medium text-gray-600">
+              <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" clipRule="evenodd" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              info@vertexcareertimes.com
+            </div>
+            <div className="mt-4 sm:mt-0 flex items-center text-sm font-medium text-gray-600">
+              <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              +91 75881 86264
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  )
 }
