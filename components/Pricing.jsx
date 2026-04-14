@@ -1,50 +1,66 @@
+"use client";
+
+import { useState } from 'react';
+
 const plans = [
   {
     name: 'Starter',
-    price: '799',
+    price: '999',
     period: 'one-time',
-    description: 'Basic guidance to understand the engineering admission process and start CAP round preparation.',
+    description: 'Basic guidance to understand MHT-CET admission process and start CAP preparation.',
     features: [
-      { text: 'Overview of MHT-CET admission process & CAP rounds', icon: 'book' },
-      { text: 'Registration guidance', icon: 'clipboard' },
+      { text: 'MHT-CET + CAP process overview', icon: 'book' },
+      { text: 'Registration + document guidance', icon: 'clipboard' },
       { text: 'Merit list understanding', icon: 'list' },
-      { text: 'CAP Round 1 basic option form guidance', icon: 'file' },
-      { text: 'Document checklist support', icon: 'check' },
+      { text: 'College vs Branch selection basics', icon: 'college' },
+      { text: 'Seminar / recorded session access', icon: 'file' },
+      { text: 'Engineering college list as per your city preference (Not option form i.e.branch+college)', icon: 'map' },
     ],
     cta: 'Enroll Starter',
     popular: false,
+    orderMobile: 'order-3',
   },
   {
     name: 'Basic',
-    price: '1,499',
+    price: '2,499',
     period: 'one-time',
-    description: 'Balanced support with analysis and structured guidance for CAP rounds.',
+    description: 'Execution support with cutoff-based option form and CAP round guidance.',
     features: [
       { text: 'Everything in Starter', icon: 'plus' },
-      { text: 'Basic psychometric assessment (interest-based)', icon: 'brain' },
-      { text: 'Cutoff analysis based on rank, category & preferences', icon: 'chart' },
-      { text: 'CAP Round 1 & 2 strategy guidance', icon: 'strategy' },
-      { text: 'WhatsApp / chat-based support', icon: 'chat' },
+      { text: 'CAP Round 1 option form (cutoff-based)', icon: 'file' },
+      { text: 'Rank, category & preference analysis', icon: 'chart' },
+      { text: 'CAP Round 2 correction strategy', icon: 'strategy' },
+      { text: 'Limited WhatsApp support', icon: 'chat' },
     ],
     cta: 'Enroll Basic',
     popular: false,
+    orderMobile: 'order-2',
   },
   {
     name: 'Strategic',
-    price: '4,999',
+    price: '5,999',
     period: 'one-time',
-    description: 'Comprehensive counselling support for better decision-making during CAP rounds.',
+    description: 'Complete counselling with research-based option form and full CAP round support.',
     features: [
       { text: 'Everything in Basic', icon: 'plus' },
-      { text: 'CAP Round 1, 2, 3, 4 & ACAP strategy support', icon: 'layers' },
-      { text: 'Personalized college shortlist (based on profile)', icon: 'college' },
-      { text: 'Option form planning (priority-wise)', icon: 'priority' },
-      { text: '1-on-1 expert counselling call', icon: 'phone' },
-      { text: 'Continuous support during CAP rounds', icon: 'support' },
-      { text: 'Guidance on planning academic journey', icon: 'path' },
+      { text: 'CAP Round 1, 2, 3, 4 + ACAP + Institute Level rounds', icon: 'layers' },
+      { type: 'subheader', text: 'Research-Based Option Form (Core USP):' },
+      { text: 'Median Placement Data (real outcome focus)', icon: 'check' },
+      { text: 'Faculty Stability + Teaching Feedback', icon: 'check' },
+      { text: 'NBA / NAAC validation', icon: 'check' },
+      { text: 'Selective NIRF usage', icon: 'check' },
+      { text: 'Real student & alumni insights', icon: 'check' },
+      { text: 'ROI-based college selection', icon: 'check' },
+      { type: 'subheader', text: 'Additional Support:' },
+      { text: 'Priority-wise option form (Dream / Safe / Backup)', icon: 'priority' },
+      { text: '1:1 expert counselling session', icon: 'phone' },
+      { text: '9 structured guidance sessions', icon: 'support' },
+      { text: 'Branch selection guidance (CS/IT vs Core reality)', icon: 'brain' },
     ],
     cta: 'Enroll Strategic',
     popular: true,
+    badge: 'Recommended for serious students & parents',
+    orderMobile: 'order-1',
   },
 ]
 
@@ -135,6 +151,49 @@ function FeatureIcon({ type }) {
 }
 
 export default function Pricing() {
+  const [loadingPlan, setLoadingPlan] = useState(null);
+  const [showMobileModal, setShowMobileModal] = useState({ show: false, planName: '', priceStr: '' });
+  const [mobileInput, setMobileInput] = useState('');
+
+  const handlePaymentClick = (planName, priceStr) => {
+    setShowMobileModal({ show: true, planName, priceStr });
+    setMobileInput(''); // reset input
+  };
+
+  const processPayment = async () => {
+    const mobile = mobileInput;
+    if (!mobile || !/^\d{10}$/.test(mobile)) {
+      alert("A valid 10-digit mobile number is required.");
+      return;
+    }
+
+    const { planName, priceStr } = showMobileModal;
+    const numericPrice = parseInt(priceStr.replace(/,/g, ''), 10);
+    
+    setShowMobileModal({ show: false, planName: '', priceStr: '' });
+    setLoadingPlan(planName);
+
+    try {
+      const res = await fetch("/api/payment/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planName, amount: numericPrice, mobile }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url; // Redirect to PhonePe
+      } else {
+        alert(data.error || "Payment initiation failed");
+        setLoadingPlan(null);
+      }
+    } catch (err) {
+      console.error("Checkout error", err);
+      alert("Something went wrong");
+      setLoadingPlan(null);
+    }
+  };
+
   return (
     <section id="pricing" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
@@ -146,27 +205,32 @@ export default function Pricing() {
             Admission Counselling Programs
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Structured guidance for MHT-CET counselling, CAP rounds strategy, and engineering admission in Maharashtra.
+            Structured MHT-CET/JEE Maharashtra counselling with data-driven college selection and complete admission support across Maharashtra.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white rounded-xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${plan.popular
-                  ? 'border-[#2563EB] shadow-lg shadow-blue-500/10 md:scale-105 z-10'
-                  : 'border-gray-200 shadow-md'
-                }`}
+              className={`relative rounded-xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col ${plan.popular
+                  ? 'border-[#2563EB] shadow-[0_8px_30px_rgb(37,99,235,0.2)] md:scale-[1.05] z-10 bg-gradient-to-b from-blue-50 to-white'
+                  : 'bg-white border-gray-200 shadow-md'
+                } ${plan.orderMobile} md:order-none`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-[#2563EB] text-white text-center py-2.5 text-sm font-semibold tracking-wide">
+                <div className="absolute top-0 left-0 right-0 bg-[#2563EB] text-white text-center py-2.5 text-sm font-bold tracking-wide shadow-sm">
                   MOST POPULAR
                 </div>
               )}
-              <div className={`p-6 lg:p-8 ${plan.popular ? 'pt-14' : ''}`}>
+              <div className={`p-6 lg:p-8 flex-grow flex flex-col ${plan.popular ? 'pt-14' : ''}`}>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{plan.name}</h3>
+                {plan.badge && (
+                  <div className="inline-block px-3 py-1 mb-3 bg-blue-100 text-blue-800 text-[11px] uppercase font-bold rounded-full border border-blue-200">
+                    {plan.badge}
+                  </div>
+                )}
                 <p className="text-sm text-gray-600 mb-5 min-h-[48px] leading-relaxed">{plan.description}</p>
 
                 <div className="mb-6">
@@ -174,34 +238,63 @@ export default function Pricing() {
                   <span className="text-gray-500 ml-2 text-sm">/ {plan.period}</span>
                 </div>
 
-                <a
-                  href="https://wa.me/917588186264"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`block w-full py-3.5 rounded-xl font-semibold text-center transition-all duration-200 ${plan.popular
-                      ? 'bg-[#2563EB] text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
-                      : 'bg-[#F8FAFC] text-[#111827] border-2 border-gray-200 hover:border-[#2563EB] hover:text-[#2563EB]'
-                    }`}
-                >
-                  {plan.cta}
-                </a>
-
-                <div className="mt-6 pt-6 border-t border-gray-100">
+                <div className="mt-2 pt-6 border-t border-gray-100 flex-grow">
                   <p className="text-sm font-semibold text-[#111827] mb-4">What&apos;s included:</p>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 pb-6">
                     {plan.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-start gap-3 text-sm text-gray-700">
-                        <span className="text-[#2563EB] flex-shrink-0 mt-0.5">
-                          <FeatureIcon type={feature.icon} />
-                        </span>
-                        <span className="leading-relaxed">{feature.text}</span>
-                      </li>
+                      feature.type === 'subheader' ? (
+                        <li key={fIndex} className="pt-3 pb-1">
+                           <span className="block text-[13px] font-bold text-[#111827] bg-blue-50 px-3 py-2 rounded-lg border border-blue-100">
+                             {feature.text}
+                           </span>
+                        </li>
+                      ) : (
+                        <li key={fIndex} className="flex items-start gap-3 text-sm text-gray-700">
+                          <span className="text-[#2563EB] flex-shrink-0 mt-0.5">
+                            <FeatureIcon type={feature.icon} />
+                          </span>
+                          <span className="leading-relaxed">{feature.text}</span>
+                        </li>
+                      )
                     ))}
                   </ul>
+                </div>
+                
+                <div className="sticky bottom-0 bg-white/95 md:bg-transparent backdrop-blur md:backdrop-blur-none pt-4 pb-2 mt-auto z-20 border-t border-transparent group-hover:border-gray-50">
+                  <button
+                    onClick={() => handlePaymentClick(plan.name, plan.price)}
+                    disabled={loadingPlan === plan.name}
+                    className={`block w-full py-3.5 rounded-xl font-semibold text-center transition-all duration-200 disabled:opacity-75 ${plan.popular
+                        ? 'bg-[#2563EB] text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+                        : 'bg-[#F8FAFC] text-[#111827] border-2 border-gray-200 hover:border-[#2563EB] hover:text-[#2563EB]'
+                      }`}
+                  >
+                    {loadingPlan === plan.name ? 'Processing...' : 'Enroll Now'}
+                  </button>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Trust Line Below Cards */}
+        <div className="mt-10 flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-sm font-bold text-gray-800 bg-white border border-gray-200 rounded-2xl py-5 px-8 shadow-sm mx-auto max-w-4xl relative overflow-hidden">
+           <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-transparent"></div>
+           <div className="flex items-center gap-2 relative">
+             <span className="text-blue-600 bg-blue-100 p-1 rounded-full"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg></span> 10,000+ students guided
+           </div>
+           <div className="hidden sm:block text-gray-300 relative">|</div>
+           <div className="flex items-center gap-2 relative">
+             <span className="text-blue-600 bg-blue-100 p-1 rounded-full"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg></span> MHT-CET CAP counselling expertise
+           </div>
+           <div className="hidden lg:block text-gray-300 relative">|</div>
+           <div className="flex items-center gap-2 relative">
+             <span className="text-blue-600 bg-blue-100 p-1 rounded-full"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg></span> Data-driven option form approach
+           </div>
+           <div className="hidden xl:block text-gray-300 relative">|</div>
+           <div className="flex items-center gap-2 relative">
+             <span className="text-blue-600 bg-blue-100 p-1 rounded-full"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg></span> Strong Pune & Mumbai college analysis
+           </div>
         </div>
 
         {/* Trust Note */}
@@ -210,7 +303,7 @@ export default function Pricing() {
             <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>Guidance is based on available data, student profile, and admission rules. Final allotment depends on official CAP process.</span>
+            <span>Guidance is based on available data, student profile, and MHT-CET CAP rules. Final allotment depends on official counselling process.</span>
           </div>
         </div>
 
@@ -293,6 +386,52 @@ export default function Pricing() {
           </p>
         </div>
       </div>
+
+      {/* Mobile Number Modal */}
+      {showMobileModal.show && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Almost there!</h3>
+              <p className="text-sm text-gray-600 mb-5">
+                Please enter your mobile number for the <span className="font-semibold">{showMobileModal.planName}</span> plan setup.
+              </p>
+              
+              <div className="mb-6">
+                <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-2">10-Digit Mobile Number</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">+91</span>
+                  <input 
+                    type="tel" 
+                    id="mobile"
+                    maxLength={10}
+                    value={mobileInput}
+                    onChange={(e) => setMobileInput(e.target.value.replace(/\D/g, ''))}
+                    placeholder="Enter your number"
+                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setShowMobileModal({ show: false, planName: '', priceStr: '' })}
+                  className="flex-1 py-3 px-4 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={processPayment}
+                  disabled={mobileInput.length !== 10}
+                  className="flex-1 py-3 px-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                >
+                  Proceed to Pay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

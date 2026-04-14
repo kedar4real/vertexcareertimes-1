@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import FloatingButtons from '@/components/FloatingButtons'
+import GoogleTranslate from '@/components/GoogleTranslate'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
       <body className="font-sans antialiased">
         {children}
         <FloatingButtons />
+        <GoogleTranslate />
       </body>
     </html>
   )
