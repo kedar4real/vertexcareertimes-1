@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertex Career Times - Maharashtra Engineering Admission Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --soft: #f8fafc;
+      --blue: #1d4ed8;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    * { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: #f8fafc;
+      color: var(--ink);
+    }
+    .shell { max-width: 1260px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; }
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .section-title {
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+    }
+    .field {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0.66rem 0.78rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+    }
+    .field:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+    input[type="range"] { accent-color: #1d4ed8; }
+    .btn {
+      min-height: 42px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: transform 150ms var(--ease), background 150ms var(--ease), border-color 150ms var(--ease);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .branch-chip {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #fff;
+      color: #334155;
+      font-size: 0.86rem;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      transition: all 150ms var(--ease);
+    }
+    .branch-chip input { display: none; }
+    .branch-chip:has(input:checked) {
+      border-color: #1d4ed8;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+    .data-row {
+      display: grid;
+      grid-template-columns: 1.25fr 0.7fr 0.55fr 0.75fr;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.78rem 0.95rem;
+      border-top: 1px solid var(--line);
+    }
+    .result-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .result-item {
+      border-top: 1px solid #edf2f7;
+      padding: 0.9rem;
+    }
+    .skeleton {
+      position: relative;
+      overflow: hidden;
+      background: #e2e8f0;
+      border-radius: 8px;
+    }
+    .skeleton::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+      animation: shimmer 1.15s infinite;
+    }
+    .spinner {
+      width: 17px; height: 17px; border-radius: 999px;
+      border: 3px solid rgba(255,255,255,0.45); border-top-color: #fff;
+      animation: spin 850ms linear infinite;
+    }
+    @keyframes shimmer { 100% { transform: translateX(100%); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 760px) {
+      .data-row { grid-template-columns: 1fr; gap: 0.35rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="shell">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-lg bg-blue-800 text-sm font-bold text-white">VCT</span>
+          <span>
+            <span class="block text-sm font-bold text-slate-950">Vertex Career Times</span>
+            <span class="hidden text-xs font-medium text-slate-500 sm:block">Engineering admissions platform</span>
+          </span>
+        </a>
+        <nav class="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
+          <a class="hover:text-blue-700" href="#predictor">Predictor</a>
+          <a class="hover:text-blue-700" href="#report">Report</a>
+          <a class="hover:text-blue-700" href="#colleges">Colleges</a>
+          <a class="hover:text-blue-700" href="#analytics">Analytics</a>
+          <a class="hover:text-blue-700" href="#backend">Backend</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <span id="healthBadge" class="hidden items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 sm:inline-flex">
+            <span id="healthDot" class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+            <span id="healthText">Checking API</span>
+          </span>
+          <button id="menuButton" class="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-white md:hidden" aria-label="Open menu">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </div>
+      </div>
+      <nav id="mobileNav" class="hidden border-t border-slate-200 py-3 text-sm font-semibold text-slate-600 md:hidden">
+        <div class="grid gap-1">
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href="#predictor">Predictor</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href="#report">Report</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href="#colleges">Colleges</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href="#analytics">Analytics</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href="#backend">Backend</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="border-b border-slate-200 bg-white">
+      <div class="shell py-7">
+        <div class="grid gap-5 lg:grid-cols-[1fr_0.78fr] lg:items-end">
+          <div>
+            <p class="eyebrow">Maharashtra Engineering Admissions</p>
+            <h1 class="mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+              Admission predictor for counselling decisions
+            </h1>
+            <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+              Enter MHT-CET details, review college fit categories, and generate a structured counselling report from the Python FastAPI backend.
+            </p>
+          </div>
+          <div class="grid gap-2 sm:grid-cols-3">
+            <div class="panel p-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Colleges</p>
+              <p id="statColleges" class="mt-2 text-2xl font-extrabold text-slate-950">--</p>
+            </div>
+            <div class="panel p-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Districts</p>
+              <p id="statDistricts" class="mt-2 text-2xl font-extrabold text-slate-950">--</p>
+            </div>
+            <div class="panel p-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Branches</p>
+              <p id="statBranches" class="mt-2 text-2xl font-extrabold text-slate-950">--</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="predictor" class="shell py-8">
+      <div class="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+        <div>
+          <p class="eyebrow">Student Workspace</p>
+          <h2 class="section-title mt-2">CAP predictor</h2>
+        </div>
+        <p class="max-w-2xl text-sm leading-6 text-slate-600">
+          The frontend submits the profile to <span class="font-semibold text-slate-900">POST /predict</span>; recommendation groups are returned by the backend.
+        </p>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <form id="predictForm" class="panel p-4">
+          <div class="mb-4 border-b border-slate-200 pb-3">
+            <h3 class="text-base font-bold text-slate-950">Student profile</h3>
+            <p class="mt-1 text-sm text-slate-500">Use realistic values for viva walkthroughs.</p>
+          </div>
+          <div class="grid gap-3.5">
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <label class="text-sm font-semibold text-slate-800" for="percentileRange">MHT-CET percentile</label>
+                <input id="percentileNumber" class="field max-w-28 py-2 text-center font-bold text-blue-700" type="number" min="0" max="100" step="0.01" value="97.5" />
+              </div>
+              <input id="percentileRange" class="w-full" type="range" min="0" max="100" step="0.01" value="97.5" />
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-800" for="category">Category</label>
+                <select id="category" class="field">
+                  <option value="OPEN">OPEN</option>
+                  <option value="OBC">OBC</option>
+                  <option value="SC">SC</option>
+                  <option value="ST">ST</option>
+                  <option value="EWS">EWS</option>
+                  <option value="OPEN_PH">OPEN PH</option>
+                  <option value="OBC_PH">OBC PH</option>
+                </select>
+              </div>
+              <div>
+                <label class="mb-2 block text-sm font-semibold text-slate-800" for="homeDistrict">Preferred district</label>
+                <select id="homeDistrict" class="field">
+                  <option value="Pune">Pune</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold text-slate-800">Preferred branches</label>
+              <div id="branchOptions" class="grid grid-cols-3 gap-2">
+                <label class="branch-chip"><input type="checkbox" value="CS" checked />CS</label>
+                <label class="branch-chip"><input type="checkbox" value="IT" />IT</label>
+                <label class="branch-chip"><input type="checkbox" value="ENTC" />ENTC</label>
+                <label class="branch-chip"><input type="checkbox" value="ME" />ME</label>
+                <label class="branch-chip"><input type="checkbox" value="CE" />CE</label>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <label class="text-sm font-semibold text-slate-800" for="budgetRange">Annual budget</label>
+                <span id="budgetText" class="rounded-lg bg-blue-50 px-3 py-1 text-sm font-bold text-blue-700">Rs. 200,000</span>
+              </div>
+              <input id="budgetRange" class="w-full" type="range" min="0" max="250000" step="5000" value="200000" />
+            </div>
+
+            <div id="predictError" class="hidden rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm font-semibold text-rose-700"></div>
+
+            <div class="grid gap-2">
+              <button id="predictButton" class="btn bg-blue-700 px-5 py-3 text-sm text-white" type="submit">Predict colleges</button>
+              <button id="reportButton" class="btn border border-blue-200 bg-white px-5 py-3 text-sm text-blue-700" type="button">Generate counselling report</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="grid gap-4">
+          <section class="panel overflow-hidden">
+            <div class="flex flex-col justify-between gap-2 border-b border-slate-200 bg-white px-5 py-4 sm:flex-row sm:items-center">
+              <div>
+                <h3 class="text-base font-bold text-slate-950">Recommendation output</h3>
+                <p class="text-sm text-slate-500">Safe, Target, and Ambitious options returned by the API.</p>
+              </div>
+              <span id="predictionMeta" class="rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-600">Ready for input</span>
+            </div>
+            <div id="predictionResults" class="grid gap-3 p-4 lg:grid-cols-3">
+              <div class="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5 text-center text-slate-500 lg:col-span-3">
+                <p class="text-base font-bold text-slate-700">Run a prediction to view recommendations</p>
+                <p class="mt-2 text-sm">The browser displays results returned from the Python backend.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="report" class="panel hidden overflow-hidden">
+            <div class="border-b border-slate-200 bg-white px-5 py-4">
+              <h3 class="text-base font-bold text-slate-950">Counselling report</h3>
+              <p class="text-sm text-slate-500">Generated from <span class="font-semibold">POST /predict/report</span>.</p>
+            </div>
+            <div id="reportPanel" class="p-5">
+              <div class="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-500">
+                Generate a report after entering the student profile.
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="colleges" class="shell py-8">
+      <div class="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+        <div>
+          <p class="eyebrow">College Data</p>
+          <h2 class="section-title mt-2">Search colleges</h2>
+        </div>
+        <span id="collegeCount" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600">Loading colleges</span>
+      </div>
+
+      <div class="panel mb-4 grid gap-3 p-3 md:grid-cols-2 lg:grid-cols-[1.2fr_0.75fr_0.75fr_0.75fr_auto]">
+        <input id="collegeSearch" class="field" type="search" placeholder="Search college name or short name" />
+        <select id="collegeDistrict" class="field"><option value="">All districts</option></select>
+        <select id="collegeBranch" class="field">
+          <option value="">All branches</option>
+          <option value="CS">Computer Engineering</option>
+          <option value="IT">Information Technology</option>
+          <option value="ENTC">ENTC</option>
+          <option value="ME">Mechanical</option>
+          <option value="CE">Civil</option>
+        </select>
+        <select id="collegeType" class="field">
+          <option value="">All types</option>
+          <option value="Government">Government</option>
+          <option value="Aided">Aided</option>
+          <option value="Unaided">Unaided</option>
+          <option value="Autonomous">Autonomous</option>
+        </select>
+        <button id="searchButton" class="btn bg-slate-900 px-5 py-3 text-sm text-white">Search</button>
+      </div>
+
+      <div class="panel overflow-hidden">
+        <div class="hidden bg-slate-50 px-4 py-3 text-xs font-bold uppercase tracking-wide text-slate-500 md:grid md:grid-cols-[1.25fr_0.7fr_0.55fr_0.75fr] md:gap-4">
+          <span>College</span>
+          <span>District</span>
+          <span>Type</span>
+          <span>Branches / fees</span>
+        </div>
+        <div id="collegeGrid"></div>
+      </div>
+    </section>
+
+    <section id="analytics" class="border-y border-slate-200 bg-white py-8">
+      <div class="shell">
+        <div class="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div>
+            <p class="eyebrow">Analytics</p>
+            <h2 class="section-title mt-2">Cutoff and distribution insights</h2>
+          </div>
+          <p class="max-w-xl text-sm leading-6 text-slate-600">Charts consume backend series responses with labels and values for cleaner reporting.</p>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="panel p-4">
+            <div class="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-base font-bold text-slate-950">District distribution</h3>
+                <p class="text-sm text-slate-500">Total colleges by district</p>
+              </div>
+              <span class="rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">series</span>
+            </div>
+            <div class="h-64"><canvas id="districtChart"></canvas></div>
+          </div>
+          <div class="panel p-4">
+            <div class="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-base font-bold text-slate-950">Top branches</h3>
+                <p class="text-sm text-slate-500">Average OPEN cutoff percentile, 2024</p>
+              </div>
+              <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">2024</span>
+            </div>
+            <div class="h-64"><canvas id="branchChart"></canvas></div>
+          </div>
+          <div class="panel p-4 lg:col-span-2">
+            <div class="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+              <div>
+                <h3 class="text-base font-bold text-slate-950">Cutoff trend</h3>
+                <p id="trendSubtitle" class="text-sm text-slate-500">Loading latest available college and branch trend</p>
+              </div>
+              <span class="rounded-lg bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700">GET /analytics/cutoff-trend</span>
+            </div>
+            <div class="h-64"><canvas id="trendChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backend" class="shell py-8">
+      <div class="panel overflow-hidden">
+        <div class="border-b border-slate-200 bg-slate-50 px-5 py-4">
+          <p class="eyebrow">Technical Backend Work</p>
+          <h2 class="section-title mt-2">Python services supporting counselling workflows</h2>
+        </div>
+        <div class="grid divide-y divide-slate-200 md:grid-cols-4 md:divide-x md:divide-y-0">
+          <div class="p-5">
+            <h3 class="font-bold text-slate-950">FastAPI endpoints</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Health, colleges, prediction, report generation, analytics, and ingestion routes.</p>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-950">Data processing</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">CSV ingestion, field cleaning, branch normalization, and DB-ready structures.</p>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-950">CAP logic</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Colleges are grouped into Safe, Target, and Ambitious using cutoff gaps.</p>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-950">Analytics layer</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">District distribution, branch averages, and cutoff trends return chart-ready data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-5">
+    <div class="shell flex flex-col justify-between gap-2 text-sm text-slate-500 sm:flex-row">
+      <p class="font-semibold text-slate-700">Vertex Career Times</p>
+      <p>Powered by Python FastAPI</p>
+    </div>
+  </footer>
+
+  <script>
+    const API_BASE = window.location.origin;
+    const CACHE_TTL = 60 * 60 * 1000;
+    const numberFmt = new Intl.NumberFormat("en-IN");
+    const charts = {};
+
+    const el = (id) => document.getElementById(id);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const fee = (value) => value == null ? "Fee NA" : `Rs. ${numberFmt.format(Number(value))}`;
+
+    async function apiFetch(path, options = {}) {
+      const response = await fetch(API_BASE + path, {
+        headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+        ...options
+      });
+      if (!response.ok) throw new Error(await response.text() || `Request failed: ${response.status}`);
+      return response.json();
+    }
+
+    async function cachedGet(path) {
+      const key = `vct:${path}`;
+      const cached = localStorage.getItem(key);
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          if (Date.now() - parsed.time < CACHE_TTL) return parsed.data;
+        } catch (_) {}
+      }
+      const data = await apiFetch(path);
+      localStorage.setItem(key, JSON.stringify({ time: Date.now(), data }));
+      return data;
+    }
+
+    function setHealth(ok) {
+      el("healthDot").className = `h-2.5 w-2.5 rounded-full ${ok ? "bg-emerald-500" : "bg-rose-500"}`;
+      el("healthText").textContent = ok ? "API Online" : "API Offline";
+    }
+
+    function skeletonRows(target, count = 6) {
+      target.innerHTML = Array.from({ length: count }, () => `
+        <div class="data-row">
+          <div><div class="skeleton h-4 w-3/4"></div><div class="skeleton mt-2 h-3 w-1/3"></div></div>
+          <div class="skeleton h-4 w-24"></div>
+          <div class="skeleton h-4 w-20"></div>
+          <div class="skeleton h-4 w-32"></div>
+        </div>`).join("");
+    }
+
+    function resultSkeleton() {
+      el("predictionResults").innerHTML = Array.from({ length: 3 }, () => `
+        <section class="result-group">
+          <div class="bg-slate-50 p-3"><div class="skeleton h-5 w-24"></div></div>
+          <div class="p-3"><div class="skeleton h-24"></div><div class="skeleton mt-3 h-24"></div></div>
+        </section>`).join("");
+    }
+
+    function selectedBranches() {
+      return [...document.querySelectorAll("#branchOptions input:checked")].map((box) => box.value);
+    }
+
+    function predictionPayload() {
+      return {
+        percentile: Number(el("percentileNumber").value),
+        category: el("category").value,
+        branch_preference: selectedBranches(),
+        home_district: el("homeDistrict").value || "Pune",
+        budget: Number(el("budgetRange").value)
+      };
+    }
+
+    function validatePredictionPayload(payload) {
+      const errorBox = el("predictError");
+      errorBox.classList.add("hidden");
+      if (!payload.branch_preference.length) {
+        errorBox.textContent = "Select at least one branch preference.";
+        errorBox.classList.remove("hidden");
+        return false;
+      }
+      if (!Number.isFinite(payload.percentile) || payload.percentile < 0 || payload.percentile > 100) {
+        errorBox.textContent = "Enter a valid percentile between 0 and 100.";
+        errorBox.classList.remove("hidden");
+        return false;
+      }
+      return true;
+    }
+
+    function predictionCard(item, type) {
+      const colors = {
+        safe: "border-emerald-200 bg-emerald-50 text-emerald-700",
+        target: "border-amber-200 bg-amber-50 text-amber-700",
+        ambitious: "border-rose-200 bg-rose-50 text-rose-700"
+      };
+      const gap = item.percentile_gap == null ? "NA" : `${Number(item.percentile_gap).toFixed(2)} gap`;
+      return `
+        <article class="result-item">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h4 class="text-sm font-bold leading-5 text-slate-950">${escapeHtml(item.college_name)}</h4>
+              <p class="mt-1 text-xs font-semibold text-slate-500">${escapeHtml(item.short_name || item.district || "College option")}</p>
+            </div>
+            <span class="rounded-lg border px-2 py-1 text-[11px] font-bold ${colors[type]}">${escapeHtml(type)}</span>
+          </div>
+          <p class="mt-3 text-sm font-semibold text-blue-700">${escapeHtml(item.branch)}</p>
+          <dl class="mt-3 grid gap-2 text-xs font-medium text-slate-600">
+            <div class="flex justify-between gap-3"><dt>District</dt><dd class="text-right text-slate-900">${escapeHtml(item.district)}</dd></div>
+            <div class="flex justify-between gap-3"><dt>Cutoff</dt><dd class="text-slate-900">${item.cutoff_2024 == null ? "NA" : Number(item.cutoff_2024).toFixed(2)}</dd></div>
+            <div class="flex justify-between gap-3"><dt>Fees</dt><dd class="text-slate-900">${fee(item.fees_per_year)}</dd></div>
+            <div class="flex justify-between gap-3"><dt>Score gap</dt><dd class="text-slate-900">${gap}</dd></div>
+          </dl>
+        </article>`;
+    }
+
+    function renderPrediction(data) {
+      const groups = [
+        ["safe", "Safe", data.safe || [], "bg-emerald-100 text-emerald-700"],
+        ["target", "Target", data.target || [], "bg-amber-100 text-amber-700"],
+        ["ambitious", "Ambitious", data.ambitious || [], "bg-rose-100 text-rose-700"]
+      ];
+      el("predictionMeta").textContent = `${numberFmt.format(data.total_matches || 0)} matches for ${data.percentile} percentile`;
+      el("predictionResults").innerHTML = groups.map(([key, title, items, badgeClass]) => `
+        <section class="result-group">
+          <div class="flex items-center justify-between bg-slate-50 px-3 py-3">
+            <h4 class="text-sm font-bold text-slate-950">${title}</h4>
+            <span class="rounded-lg px-2.5 py-1 text-xs font-bold ${badgeClass}">${items.length}</span>
+          </div>
+          ${items.length ? items.slice(0, 6).map((item) => predictionCard(item, key)).join("") : `<div class="result-item text-sm font-medium text-slate-500">No ${title.toLowerCase()} matches.</div>`}
+        </section>`).join("");
+    }
+
+    function renderReport(report) {
+      const data = report.data || report;
+      const counts = data.counts || {};
+      const recommendations = data.recommended_colleges || [];
+      el("report").classList.remove("hidden");
+      el("reportPanel").innerHTML = `
+        <div class="grid gap-5 lg:grid-cols-[1fr_280px]">
+          <div>
+            <p class="text-sm leading-6 text-slate-700">${escapeHtml(data.summary || "Report generated successfully.")}</p>
+            <div class="mt-4 overflow-hidden rounded-lg border border-slate-200 bg-white">
+              <div class="grid grid-cols-[44px_1fr_0.8fr_0.7fr] gap-3 bg-slate-50 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-500">
+                <span>No.</span><span>College</span><span>Branch</span><span>Category</span>
+              </div>
+              ${recommendations.slice(0, 6).map((item, index) => `
+                <div class="grid grid-cols-[44px_1fr_0.8fr_0.7fr] gap-3 border-t border-slate-200 px-3 py-3 text-sm">
+                  <span class="font-semibold text-slate-500">${index + 1}</span>
+                  <span class="font-semibold text-slate-900">${escapeHtml(item.college_name)}</span>
+                  <span class="text-slate-600">${escapeHtml(item.branch)}</span>
+                  <span class="font-semibold capitalize text-blue-700">${escapeHtml(item.classification)}</span>
+                </div>
+              `).join("") || `<div class="border-t border-slate-200 px-3 py-3 text-sm text-slate-500">No recommendations available.</div>`}
+            </div>
+          </div>
+          <aside class="rounded-lg border border-slate-200 bg-white p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Summary</p>
+            <dl class="mt-3 grid gap-2 text-sm font-medium">
+              <div class="flex justify-between"><dt>Safe</dt><dd class="font-bold text-emerald-700">${counts.safe ?? 0}</dd></div>
+              <div class="flex justify-between"><dt>Target</dt><dd class="font-bold text-amber-700">${counts.target ?? 0}</dd></div>
+              <div class="flex justify-between"><dt>Ambitious</dt><dd class="font-bold text-rose-700">${counts.ambitious ?? 0}</dd></div>
+              <div class="border-t border-slate-200 pt-2 flex justify-between"><dt>Total matches</dt><dd class="font-bold text-slate-900">${counts.total_matches ?? 0}</dd></div>
+            </dl>
+          </aside>
+        </div>`;
+    }
+
+    function collegeRow(college) {
+      const branches = college.branches || [];
+      const branchText = branches.slice(0, 4).map((b) => escapeHtml(b.code || b.name)).join(", ");
+      const minFee = branches.map((b) => b.fees_per_year).filter((v) => v != null).sort((a, b) => a - b)[0];
+      return `
+        <article class="data-row">
+          <div>
+            <h3 class="text-sm font-bold text-slate-950">${escapeHtml(college.name)}</h3>
+            <p class="mt-1 text-xs font-medium text-slate-500">${escapeHtml(college.short_name || college.affiliated_to || "Engineering college")}</p>
+          </div>
+          <span class="text-sm font-medium text-slate-700">${escapeHtml(college.district || college.location || "Location NA")}</span>
+          <span class="text-sm font-medium text-slate-700">${escapeHtml(college.college_type || "NA")}</span>
+          <span class="text-sm text-slate-600">${branchText || "Branches NA"}<span class="block text-xs font-semibold text-slate-500">${fee(minFee)}</span></span>
+        </article>`;
+    }
+
+    async function loadColleges(pageSize = 9) {
+      const params = new URLSearchParams({ page: "1", page_size: String(pageSize) });
+      const name = el("collegeSearch").value.trim();
+      const district = el("collegeDistrict").value;
+      const branch = el("collegeBranch").value;
+      const type = el("collegeType").value;
+      if (name) params.set("name", name);
+      if (district) params.set("district", district);
+      if (branch) params.set("branch_code", branch);
+      if (type) params.set("college_type", type);
+      skeletonRows(el("collegeGrid"), 6);
+      try {
+        const data = await apiFetch(`/colleges?${params.toString()}`);
+        el("collegeCount").textContent = `${numberFmt.format(data.total)} colleges found`;
+        el("collegeGrid").innerHTML = data.results.length
+          ? data.results.map(collegeRow).join("")
+          : `<div class="p-8 text-center text-sm font-medium text-slate-500">No colleges found. Try changing filters.</div>`;
+      } catch (error) {
+        el("collegeGrid").innerHTML = `<div class="p-8 text-center text-sm font-semibold text-rose-700">Could not load colleges. Please confirm the FastAPI server is running.</div>`;
+      }
+    }
+
+    function buildChart(id, config) {
+      const node = el(id);
+      if (!node || !window.Chart) return;
+      if (charts[id]) charts[id].destroy();
+      charts[id] = new Chart(node, config);
+    }
+
+    async function loadAnalytics() {
+      try {
+        const [districtSeries, branchSeries, colleges, catalog] = await Promise.all([
+          cachedGet("/analytics/district-stats?format=series"),
+          cachedGet("/analytics/top-branches?year=2024&category=OPEN&format=series"),
+          cachedGet("/colleges?page=1&page_size=1"),
+          cachedGet("/colleges?page=1&page_size=100")
+        ]);
+        const districts = districtSeries.data || districtSeries;
+        const branches = branchSeries.data || branchSeries;
+        const uniqueBranches = new Set((catalog.results || []).flatMap((college) => (college.branches || []).map((branch) => branch.code).filter(Boolean)));
+        el("statDistricts").textContent = numberFmt.format(districts.length);
+        el("statColleges").textContent = numberFmt.format(colleges.total || 0);
+        el("statBranches").textContent = numberFmt.format(uniqueBranches.size || branches.length || 0);
+
+        buildChart("districtChart", {
+          type: "bar",
+          data: {
+            labels: districtSeries.labels || districts.map((d) => d.district),
+            datasets: [{ label: "Colleges", data: districtSeries.values || districts.map((d) => d.total_colleges), backgroundColor: "#1d4ed8", borderRadius: 6 }]
+          },
+          options: chartOptions(false)
+        });
+        buildChart("branchChart", {
+          type: "bar",
+          data: {
+            labels: branchSeries.labels || branches.map((b) => b.branch_code),
+            datasets: [{ label: "Average cutoff", data: branchSeries.values || branches.map((b) => Number(b.avg_cutoff).toFixed(2)), backgroundColor: "#0f172a", borderRadius: 6 }]
+          },
+          options: chartOptions(false)
+        });
+
+        const first = colleges.results?.[0];
+        const firstBranch = first?.branches?.[0]?.code || "CS";
+        if (first) {
+          const trendSeries = await cachedGet(`/analytics/cutoff-trend?college_id=${first.id}&branch_code=${firstBranch}&category=OPEN&format=series`);
+          const trend = trendSeries.data || trendSeries;
+          const row = trend[0];
+          el("trendSubtitle").textContent = `${row.college_name} - ${row.branch_name}`;
+          buildChart("trendChart", {
+            type: "line",
+            data: {
+              labels: trendSeries.labels || row.trend.map((p) => p.year),
+              datasets: [{
+                label: "Cutoff percentile",
+                data: trendSeries.values || row.trend.map((p) => p.cutoff_percentile),
+                borderColor: "#1d4ed8",
+                backgroundColor: "rgba(29, 78, 216, 0.08)",
+                fill: true,
+                tension: 0.25,
+                pointRadius: 4,
+                pointBackgroundColor: "#1d4ed8"
+              }]
+            },
+            options: trendChartOptions(row.trend)
+          });
+        }
+      } catch (error) {
+        ["districtChart", "branchChart", "trendChart"].forEach((id) => {
+          const container = el(id).parentElement;
+          container.innerHTML = `<div class="grid h-full place-items-center rounded-lg border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-medium text-slate-500">Analytics data unavailable</div>`;
+        });
+      }
+    }
+
+    function chartOptions(beginAtZero) {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { backgroundColor: "#0f172a", padding: 11, cornerRadius: 8 } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: "#64748b", font: { weight: "600" } } },
+          y: { beginAtZero, grid: { color: "rgba(148,163,184,0.22)" }, ticks: { color: "#64748b", font: { weight: "600" } } }
+        }
+      };
+    }
+
+    function trendChartOptions(points) {
+      const values = points.map((point) => Number(point.cutoff_percentile)).filter((value) => Number.isFinite(value));
+      const min = Math.max(0, Math.floor(Math.min(...values) - 0.5));
+      const max = Math.min(100, Math.ceil(Math.max(...values) + 0.5));
+      return {
+        ...chartOptions(false),
+        scales: {
+          x: { grid: { display: false }, ticks: { color: "#64748b", font: { weight: "600" } } },
+          y: { min, max, grid: { color: "rgba(148,163,184,0.22)" }, ticks: { color: "#64748b", font: { weight: "600" } } }
+        }
+      };
+    }
+
+    async function populateFilters() {
+      try {
+        const districts = await cachedGet("/analytics/district-stats?format=series");
+        const rows = districts.data || districts;
+        const districtOptions = rows.map((d) => `<option value="${escapeHtml(d.district)}">${escapeHtml(d.district)}</option>`).join("");
+        el("homeDistrict").innerHTML = districtOptions;
+        el("collegeDistrict").innerHTML = `<option value="">All districts</option>${districtOptions}`;
+      } catch (_) {}
+    }
+
+    async function checkHealth() {
+      try {
+        await apiFetch("/health");
+        setHealth(true);
+      } catch (_) {
+        setHealth(false);
+      }
+    }
+
+    function wireEvents() {
+      el("menuButton").addEventListener("click", () => el("mobileNav").classList.toggle("hidden"));
+      document.querySelectorAll("#mobileNav a").forEach((link) => link.addEventListener("click", () => el("mobileNav").classList.add("hidden")));
+
+      const range = el("percentileRange");
+      const number = el("percentileNumber");
+      range.addEventListener("input", () => { number.value = range.value; });
+      number.addEventListener("input", () => {
+        const value = Math.min(100, Math.max(0, Number(number.value || 0)));
+        range.value = value;
+      });
+      el("budgetRange").addEventListener("input", (event) => {
+        el("budgetText").textContent = fee(event.target.value);
+      });
+
+      el("searchButton").addEventListener("click", () => loadColleges());
+      ["collegeSearch", "collegeDistrict", "collegeBranch", "collegeType"].forEach((id) => {
+        el(id).addEventListener("keydown", (event) => { if (event.key === "Enter") loadColleges(); });
+        if (id !== "collegeSearch") el(id).addEventListener("change", () => loadColleges());
+      });
+
+      el("predictForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = predictionPayload();
+        if (!validatePredictionPayload(payload)) return;
+        const button = el("predictButton");
+        button.disabled = true;
+        button.innerHTML = `<span class="spinner"></span><span>Predicting</span>`;
+        el("report").classList.add("hidden");
+        resultSkeleton();
+        try {
+          const data = await apiFetch("/predict", { method: "POST", body: JSON.stringify(payload) });
+          renderPrediction(data);
+        } catch (error) {
+          el("predictionResults").innerHTML = `<div class="rounded-lg border border-rose-200 bg-rose-50 p-5 text-sm font-semibold text-rose-700 lg:col-span-3">Prediction failed. Please check the backend and try again.</div>`;
+          el("predictionMeta").textContent = "Prediction error";
+        } finally {
+          button.disabled = false;
+          button.innerHTML = "Predict colleges";
+        }
+      });
+
+      el("reportButton").addEventListener("click", async () => {
+        const payload = predictionPayload();
+        if (!validatePredictionPayload(payload)) return;
+        const button = el("reportButton");
+        button.disabled = true;
+        button.innerHTML = `<span class="spinner"></span><span>Generating report</span>`;
+        el("report").classList.remove("hidden");
+        el("reportPanel").innerHTML = `<div class="skeleton h-28 w-full"></div>`;
+        try {
+          const report = await apiFetch("/predict/report", { method: "POST", body: JSON.stringify(payload) });
+          renderReport(report);
+        } catch (error) {
+          el("reportPanel").innerHTML = `<div class="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm font-semibold text-rose-700">Could not generate report. Restart the FastAPI server if the new endpoint is not loaded.</div>`;
+        } finally {
+          button.disabled = false;
+          button.innerHTML = "Generate counselling report";
+        }
+      });
+    }
+
+    async function init() {
+      wireEvents();
+      checkHealth();
+      populateFilters();
+      loadAnalytics();
+      loadColleges();
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+college_id,college_name,short_name,location,district,college_type,affiliated_to,website,naac_grade,fees_per_year,branch_code,branch_name,category,year,round_no,cutoff_percentile
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OPEN,2022,1,99.41
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OBC,2022,1,99.12
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,SC,2022,1,97.80
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,ST,2022,1,95.10
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,EWS,2022,1,99.05
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,IT,Information Technology,OPEN,2022,1,99.10
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,IT,Information Technology,OBC,2022,1,98.85
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ENTC,Electronics & Telecommunication,OPEN,2022,1,98.90
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ME,Mechanical Engineering,OPEN,2022,1,97.50
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OPEN,2023,1,99.52
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OBC,2023,1,99.21
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,SC,2023,1,98.01
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,ST,2023,1,95.80
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,EWS,2023,1,99.18
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,IT,Information Technology,OPEN,2023,1,99.22
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ENTC,Electronics & Telecommunication,OPEN,2023,1,99.00
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ME,Mechanical Engineering,OPEN,2023,1,97.75
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OPEN,2024,1,99.61
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,OBC,2024,1,99.35
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,SC,2024,1,98.20
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,ST,2024,1,96.10
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,CS,Computer Engineering,EWS,2024,1,99.30
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,IT,Information Technology,OPEN,2024,1,99.35
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ENTC,Electronics & Telecommunication,OPEN,2024,1,99.10
+1,College of Engineering Pune,COEP,Pune,Pune,Government,Savitribai Phule Pune University,coep.org.in,A++,28000,ME,Mechanical Engineering,OPEN,2024,1,98.00
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OPEN,2022,1,99.15
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OBC,2022,1,98.70
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,SC,2022,1,96.90
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,ST,2022,1,93.50
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,EWS,2022,1,98.80
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,IT,Information Technology,OPEN,2022,1,98.85
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,ENTC,Electronics & Telecommunication,OPEN,2022,1,98.60
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,ME,Mechanical Engineering,OPEN,2022,1,96.80
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OPEN,2023,1,99.28
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OBC,2023,1,98.92
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,SC,2023,1,97.20
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,EWS,2023,1,98.95
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,IT,Information Technology,OPEN,2023,1,99.00
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,ENTC,Electronics & Telecommunication,OPEN,2023,1,98.75
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OPEN,2024,1,99.38
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,OBC,2024,1,99.05
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,SC,2024,1,97.50
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,ST,2024,1,94.20
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,CS,Computer Engineering,EWS,2024,1,99.08
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,IT,Information Technology,OPEN,2024,1,99.12
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,ENTC,Electronics & Telecommunication,OPEN,2024,1,98.88
+2,Veermata Jijabai Technological Institute,VJTI,Mumbai,Mumbai,Government,University of Mumbai,vjti.ac.in,A+,34500,ME,Mechanical Engineering,OPEN,2024,1,97.10
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OPEN,2022,1,97.80
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OBC,2022,1,96.50
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,SC,2022,1,92.00
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,IT,Information Technology,OPEN,2022,1,97.20
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,ENTC,Electronics & Telecommunication,OPEN,2022,1,95.80
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,ME,Mechanical Engineering,OPEN,2022,1,88.50
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OPEN,2023,1,98.10
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OBC,2023,1,96.85
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,SC,2023,1,92.40
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,IT,Information Technology,OPEN,2023,1,97.55
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,ENTC,Electronics & Telecommunication,OPEN,2023,1,96.20
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OPEN,2024,1,98.35
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,OBC,2024,1,97.10
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,CS,Computer Engineering,SC,2024,1,93.00
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,IT,Information Technology,OPEN,2024,1,97.80
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,ENTC,Electronics & Telecommunication,OPEN,2024,1,96.50
+3,MIT College of Engineering,MITCOE,Pune,Pune,Unaided,Savitribai Phule Pune University,mitcoe.edu.in,A,165000,ME,Mechanical Engineering,OPEN,2024,1,89.20
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OPEN,2022,1,98.50
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OBC,2022,1,97.80
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,SC,2022,1,94.50
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,IT,Information Technology,OPEN,2022,1,98.10
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OPEN,2023,1,98.70
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OBC,2023,1,98.00
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,SC,2023,1,95.10
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,IT,Information Technology,OPEN,2023,1,98.35
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OPEN,2024,1,98.88
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,OBC,2024,1,98.20
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,CS,Computer Engineering,SC,2024,1,95.50
+4,Pune Institute of Computer Technology,PICT,Pune,Pune,Aided,Savitribai Phule Pune University,pict.edu,A+,38000,IT,Information Technology,OPEN,2024,1,98.55
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OPEN,2022,1,98.20
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OBC,2022,1,97.40
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,IT,Information Technology,OPEN,2022,1,97.80
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,ENTC,Electronics & Telecommunication,OPEN,2022,1,96.90
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OPEN,2023,1,98.40
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OBC,2023,1,97.65
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,IT,Information Technology,OPEN,2023,1,98.00
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OPEN,2024,1,98.58
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,CS,Computer Engineering,OBC,2024,1,97.85
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,IT,Information Technology,OPEN,2024,1,98.18
+5,Sardar Patel Institute of Technology,SPIT,Mumbai,Mumbai,Aided,University of Mumbai,spit.ac.in,A,42000,ENTC,Electronics & Telecommunication,OPEN,2024,1,97.20
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OPEN,2022,1,97.90
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,IT,Information Technology,OPEN,2022,1,97.30
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,ENTC,Electronics & Telecommunication,OPEN,2022,1,95.50
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OBC,2022,1,96.80
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OPEN,2023,1,98.10
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,IT,Information Technology,OPEN,2023,1,97.55
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,ENTC,Electronics & Telecommunication,OPEN,2023,1,95.80
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OBC,2023,1,97.05
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OPEN,2024,1,98.28
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,IT,Information Technology,OPEN,2024,1,97.72
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,ENTC,Electronics & Telecommunication,OPEN,2024,1,96.10
+6,DJ Sanghvi College of Engineering,DJSCE,Mumbai,Mumbai,Aided,University of Mumbai,djsce.ac.in,A,48000,CS,Computer Engineering,OBC,2024,1,97.22
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OPEN,2022,1,96.50
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,IT,Information Technology,OPEN,2022,1,95.80
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OBC,2022,1,94.20
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OPEN,2023,1,96.80
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,IT,Information Technology,OPEN,2023,1,96.10
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OBC,2023,1,94.60
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OPEN,2024,1,97.05
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,IT,Information Technology,OPEN,2024,1,96.40
+7,KJ Somaiya College of Engineering,KJSCE,Mumbai,Mumbai,Unaided,University of Mumbai,kjsce.somaiya.edu,A,145000,CS,Computer Engineering,OBC,2024,1,95.00
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OPEN,2022,1,97.10
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OBC,2022,1,96.20
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,SC,2022,1,92.50
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,IT,Information Technology,OPEN,2022,1,96.50
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,ENTC,Electronics & Telecommunication,OPEN,2022,1,95.00
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OPEN,2023,1,97.35
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OBC,2023,1,96.50
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,SC,2023,1,93.00
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,IT,Information Technology,OPEN,2023,1,96.75
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OPEN,2024,1,97.60
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,OBC,2024,1,96.75
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,CS,Computer Engineering,SC,2024,1,93.50
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,IT,Information Technology,OPEN,2024,1,97.00
+8,Walchand College of Engineering,WCE,Sangli,Sangli,Government,Shivaji University,walchandsangli.ac.in,A+,28000,ENTC,Electronics & Telecommunication,OPEN,2024,1,95.50
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2022,1,94.80
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OBC,2022,1,92.50
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,SC,2022,1,85.00
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,ME,Mechanical Engineering,OPEN,2022,1,82.00
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2023,1,95.20
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OBC,2023,1,93.10
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2024,1,95.50
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,OBC,2024,1,93.50
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,CS,Computer Engineering,SC,2024,1,86.00
+9,Government College of Engineering Aurangabad,GCEA,Aurangabad,Chhatrapati Sambhajinagar,Government,Dr. Babasaheb Ambedkar Marathwada University,gcea.ac.in,B++,24000,ME,Mechanical Engineering,OPEN,2024,1,83.50
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,CS,Computer Engineering,OPEN,2022,1,97.00
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,IT,Information Technology,OPEN,2022,1,96.40
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,CS,Computer Engineering,OBC,2022,1,95.50
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,ENTC,Electronics & Telecommunication,OPEN,2022,1,94.80
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,CS,Computer Engineering,OPEN,2023,1,97.25
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,IT,Information Technology,OPEN,2023,1,96.70
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,CS,Computer Engineering,OPEN,2024,1,97.50
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,IT,Information Technology,OPEN,2024,1,96.90
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,CS,Computer Engineering,OBC,2024,1,96.00
+10,Vishwakarma Institute of Technology,VIT,Pune,Pune,Unaided,Savitribai Phule Pune University,vit.edu,A,175000,ENTC,Electronics & Telecommunication,OPEN,2024,1,95.20
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,CS,Computer Engineering,OPEN,2022,1,97.50
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,IT,Information Technology,OPEN,2022,1,96.80
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,ENTC,Electronics & Telecommunication,OPEN,2022,1,95.20
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,CS,Computer Engineering,OPEN,2023,1,97.70
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,IT,Information Technology,OPEN,2023,1,97.05
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,CS,Computer Engineering,OPEN,2024,1,97.90
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,IT,Information Technology,OPEN,2024,1,97.25
+11,Cummins College of Engineering for Women,CCEW,Pune,Pune,Aided,Savitribai Phule Pune University,cumminscollege.org,A,45000,ENTC,Electronics & Telecommunication,OPEN,2024,1,95.60
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OPEN,2022,1,93.50
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OBC,2022,1,90.20
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,ME,Mechanical Engineering,OPEN,2022,1,80.50
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CE,Civil Engineering,OPEN,2022,1,70.00
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OPEN,2023,1,94.00
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OBC,2023,1,90.80
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OPEN,2024,1,94.50
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CS,Computer Engineering,OBC,2024,1,91.30
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,ME,Mechanical Engineering,OPEN,2024,1,81.50
+12,Government College of Engineering Karad,GCEK,Karad,Satara,Government,Shivaji University,gcekarad.ac.in,B+,22000,CE,Civil Engineering,OPEN,2024,1,71.00
+13,Symbiosis Institute of Technology,SIT,Pune,Pune,Unaided,Symbiosis International University,sitpune.edu.in,A,195000,CS,Computer Engineering,OPEN,2022,1,96.20
+13,Symbiosis Institute of Technology,SIT,Pune,Pune,Unaided,Symbiosis International University,sitpune.edu.in,A,195000,IT,Information Technology,OPEN,2022,1,95.50
+13,Symbiosis Institute of Technology,SIT,Pune,Pune,Unaided,Symbiosis International University,sitpune.edu.in,A,195000,CS,Computer Engineering,OPEN,2023,1,96.55
+13,Symbiosis Institute of Technology,SIT,Pune,Pune,Unaided,Symbiosis International University,sitpune.edu.in,A,195000,CS,Computer Engineering,OPEN,2024,1,96.85
+13,Symbiosis Institute of Technology,SIT,Pune,Pune,Unaided,Symbiosis International University,sitpune.edu.in,A,195000,IT,Information Technology,OPEN,2024,1,96.00
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,CS,Computer Engineering,OPEN,2022,1,96.00
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,IT,Information Technology,OPEN,2022,1,95.20
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,CS,Computer Engineering,OBC,2022,1,94.00
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,CS,Computer Engineering,OPEN,2023,1,96.30
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,IT,Information Technology,OPEN,2023,1,95.55
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,CS,Computer Engineering,OPEN,2024,1,96.60
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,IT,Information Technology,OPEN,2024,1,95.85
+14,Ramrao Adik Institute of Technology,RAIT,Navi Mumbai,Thane,Aided,University of Mumbai,rait.ac.in,A,52000,CS,Computer Engineering,OBC,2024,1,94.50
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,CS,Computer Engineering,OPEN,2022,1,96.80
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,IT,Information Technology,OPEN,2022,1,96.10
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,ENTC,Electronics & Telecommunication,OPEN,2022,1,94.50
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,CS,Computer Engineering,OBC,2022,1,95.20
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,CS,Computer Engineering,OPEN,2023,1,97.05
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,IT,Information Technology,OPEN,2023,1,96.40
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,CS,Computer Engineering,OPEN,2024,1,97.22
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,IT,Information Technology,OPEN,2024,1,96.60
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,ENTC,Electronics & Telecommunication,OPEN,2024,1,94.90
+15,Thadomal Shahani Engineering College,TSEC,Mumbai,Mumbai,Aided,University of Mumbai,tsec.edu,A,46000,CS,Computer Engineering,OBC,2024,1,95.50
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OPEN,2022,1,88.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OBC,2022,1,83.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,ME,Mechanical Engineering,OPEN,2022,1,70.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OPEN,2023,1,89.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OBC,2023,1,84.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OPEN,2024,1,90.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,CS,Computer Engineering,OBC,2024,1,85.00
+16,MGM College of Engineering,MGMCOE,Nanded,Nanded,Unaided,SRTMU Nanded,mgmcen.ac.in,B+,98000,ME,Mechanical Engineering,OPEN,2024,1,72.00
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2022,1,92.00
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OBC,2022,1,88.50
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,SC,2022,1,80.00
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,ME,Mechanical Engineering,OPEN,2022,1,76.00
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2023,1,92.80
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OBC,2023,1,89.20
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OPEN,2024,1,93.50
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,OBC,2024,1,90.00
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,CS,Computer Engineering,SC,2024,1,81.50
+17,Government College of Engineering Amravati,GCEA2,Amravati,Amravati,Government,Sant Gadge Baba Amravati University,gcoea.ac.in,B++,24000,ME,Mechanical Engineering,OPEN,2024,1,78.00
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OPEN,2022,1,93.00
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OBC,2022,1,89.50
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,ENTC,Electronics & Telecommunication,OPEN,2022,1,88.00
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,ME,Mechanical Engineering,OPEN,2022,1,78.00
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OPEN,2023,1,93.60
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OBC,2023,1,90.10
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OPEN,2024,1,94.20
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,CS,Computer Engineering,OBC,2024,1,90.80
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,ENTC,Electronics & Telecommunication,OPEN,2024,1,89.00
+18,College of Engineering Nashik,GCOEN,Nashik,Nashik,Government,Savitribai Phule Pune University,gcoen.ac.in,B++,26000,ME,Mechanical Engineering,OPEN,2024,1,79.50
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,CS,Computer Engineering,OPEN,2022,1,96.40
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,IT,Information Technology,OPEN,2022,1,95.70
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,ENTC,Electronics & Telecommunication,OPEN,2022,1,94.00
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,CS,Computer Engineering,OBC,2022,1,94.80
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,CS,Computer Engineering,OPEN,2023,1,96.65
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,IT,Information Technology,OPEN,2023,1,95.95
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,CS,Computer Engineering,OPEN,2024,1,96.88
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,IT,Information Technology,OPEN,2024,1,96.18
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,ENTC,Electronics & Telecommunication,OPEN,2024,1,94.40
+19,Fr. Conceicao Rodrigues College of Engineering,CRCE,Mumbai,Mumbai,Aided,University of Mumbai,frcrce.ac.in,A,44000,CS,Computer Engineering,OBC,2024,1,95.10
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OPEN,2022,1,90.50
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OBC,2022,1,86.00
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,ME,Mechanical Engineering,OPEN,2022,1,72.00
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CE,Civil Engineering,OPEN,2022,1,60.00
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OPEN,2023,1,91.20
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OBC,2023,1,86.80
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OPEN,2024,1,92.00
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CS,Computer Engineering,OBC,2024,1,87.50
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,ME,Mechanical Engineering,OPEN,2024,1,73.50
+20,Government College of Engineering Jalgaon,GCEJ,Jalgaon,Jalgaon,Government,North Maharashtra University,gcejlgn.ac.in,B+,22000,CE,Civil Engineering,OPEN,2024,1,62.00
