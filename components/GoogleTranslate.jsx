@@ -1,23 +1,38 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const languages = [
+  { code: "en", name: "English", label: "EN" },
+  { code: "mr", name: "Marathi", label: "MR" },
+  { code: "hi", name: "Hindi", label: "HI" },
+];
+
+function triggerGoogleTranslate(langCode, attempt = 0) {
+  const select = document.querySelector(".goog-te-combo");
+
+  if (select) {
+    select.value = langCode;
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+    return;
+  }
+
+  if (attempt < 20) {
+    window.setTimeout(() => triggerGoogleTranslate(langCode, attempt + 1), 200);
+  }
+}
 
 export default function GoogleTranslate() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("English");
+  const [selectedLang, setSelectedLang] = useState(languages[0]);
   const dropdownRef = useRef(null);
-
-  const languages = [
-    { code: "en", name: "English", flag: "🇬🇧" },
-    { code: "mr", name: "Marathi (मराठी)", flag: "🇮🇳" },
-    { code: "hi", name: "Hindi (हिंदी)", flag: "🇮🇳" },
-  ];
+  const initializedRef = useRef(false);
 
   useEffect(() => {
-    // Add Google Translate script
-    if (document.getElementById("google-translate-script")) return;
+    const initTranslate = () => {
+      if (initializedRef.current || !window.google?.translate) return;
 
-    window.googleTranslateElementInit = () => {
+      initializedRef.current = true;
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
@@ -29,61 +44,61 @@ export default function GoogleTranslate() {
       );
     };
 
-    const script = document.createElement("script");
-    script.id = "google-translate-script";
-    script.src =
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    script.async = true;
-    document.body.appendChild(script);
+    window.googleTranslateElementInit = initTranslate;
 
-    // Close dropdown on outside click
+    if (window.google?.translate) {
+      initTranslate();
+    } else if (!document.getElementById("google-translate-script")) {
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLanguageSelect = (langCode, langName) => {
-    setSelectedLang(langName);
+  const handleLanguageSelect = (language) => {
+    setSelectedLang(language);
     setIsOpen(false);
-
-    // Find the hidden Google Translate select dropdown and trigger it
-    const select = document.querySelector(".goog-te-combo");
-    if (select) {
-      select.value = langCode;
-      select.dispatchEvent(new Event("change"));
-    }
+    triggerGoogleTranslate(language.code);
   };
 
   return (
     <div className="fixed bottom-6 left-6 z-50 translate-widget-container" ref={dropdownRef}>
-      {/* Hidden original translate element */}
-      <div id="google_translate_element" className="hidden"></div>
-      
-      {/* Custom Dropdown Menu */}
-      <div 
-        className={`absolute bottom-full left-0 mb-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg transition-all duration-200 origin-bottom-left ${
-          isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
+      <div id="google_translate_element" className="translate-source" />
+
+      <div
+        className={`absolute bottom-full left-0 mb-2 w-44 origin-bottom-left rounded-xl border border-gray-200 bg-white shadow-lg transition-all duration-200 ${
+          isOpen ? "visible scale-100 opacity-100" : "invisible scale-95 opacity-0"
         }`}
       >
-        <div className="p-2 space-y-1">
-          {languages.map((lang) => (
+        <div className="p-2">
+          {languages.map((language) => (
             <button
-              key={lang.code}
-              onClick={() => handleLanguageSelect(lang.code, lang.name)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                selectedLang === lang.name
+              key={language.code}
+              onClick={() => handleLanguageSelect(language)}
+              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                selectedLang.code === language.code
                   ? "bg-blue-50 text-blue-700"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
+              type="button"
             >
-              <span className="text-lg">{lang.flag}</span>
-              {lang.name}
-              {selectedLang === lang.name && (
-                <svg className="w-4 h-4 ml-auto text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="grid h-7 w-8 place-items-center rounded-md bg-gray-100 text-[11px] font-bold text-gray-700">
+                {language.label}
+              </span>
+              <span>{language.name}</span>
+              {selectedLang.code === language.code && (
+                <svg className="ml-auto h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               )}
@@ -92,17 +107,12 @@ export default function GoogleTranslate() {
         </div>
       </div>
 
-      {/* Main Trigger Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 bg-white border border-gray-200 shadow-md hover:shadow-lg hover:bg-gray-50 px-4 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent active:scale-95"
+        onClick={() => setIsOpen((open) => !open)}
+        className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-md transition-all duration-200 hover:bg-gray-50 hover:shadow-lg focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95"
+        type="button"
       >
-        <svg
-          className="w-5 h-5 text-blue-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -110,11 +120,9 @@ export default function GoogleTranslate() {
             d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
           />
         </svg>
-        <span className="text-sm font-semibold text-gray-800">
-          {selectedLang === "English" ? "Select Language" : selectedLang.split(" ")[0]}
-        </span>
+        <span className="text-sm font-semibold text-gray-800">{selectedLang.name}</span>
         <svg
-          className={`w-4 h-4 text-gray-500 transition-transform duration-200 ml-1 ${isOpen ? "rotate-180" : ""}`}
+          className={`ml-1 h-4 w-4 text-gray-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -123,21 +131,25 @@ export default function GoogleTranslate() {
         </svg>
       </button>
 
-      {/* Global CSS to suppress any Google UI pollution */}
       <style jsx global>{`
-        /* Deep hide the Google Translate widget completely */
+        .translate-source {
+          position: fixed !important;
+          left: -9999px !important;
+          bottom: 0 !important;
+          height: 1px !important;
+          width: 1px !important;
+          overflow: hidden !important;
+        }
         .skiptranslate.goog-te-gadget {
-          display: none !important;
+          font-size: 0 !important;
         }
-        iframe.goog-te-banner-frame {
-          display: none !important;
-        }
-        body {
-          top: 0px !important;
-        }
+        iframe.goog-te-banner-frame,
         #goog-gt-tt {
           display: none !important;
           visibility: hidden !important;
+        }
+        body {
+          top: 0 !important;
         }
         .goog-text-highlight {
           background-color: transparent !important;

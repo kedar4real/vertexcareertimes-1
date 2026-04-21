@@ -12,6 +12,7 @@ const mainLinks = [
 ]
 
 const serviceLinks = [
+  { label: 'CAP Predictor', href: '/cap-predictor', highlight: true },
   { label: 'Premium Counselling', href: '/#counselling', highlight: true },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
