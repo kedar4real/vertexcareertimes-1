@@ -21,26 +21,32 @@
   <style>
     :root {
       color-scheme: light;
-      --ink: #0f172a;
-      --muted: #64748b;
-      --line: #e2e8f0;
-      --soft: #f8fafc;
-      --blue: #1d4ed8;
+      --ink: #0b1224;
+      --muted: #5f6b84;
+      --line: #d7e0ef;
+      --soft: #f4f7fc;
+      --blue: #3459e6;
+      --navy: #121f46;
+      --teal: #0ea5b7;
+      --panel-glow: 0 18px 38px rgba(18, 31, 70, 0.07);
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     * { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Inter", system-ui, sans-serif;
-      background: #f8fafc;
+      background:
+        radial-gradient(1000px 480px at 8% -10%, rgba(52, 89, 230, 0.09), transparent 55%),
+        radial-gradient(820px 420px at 95% 0%, rgba(14, 165, 183, 0.08), transparent 55%),
+        var(--soft);
       color: var(--ink);
     }
     .shell { max-width: 1260px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; }
     .panel {
-      background: #fff;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
       border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+      border-radius: 12px;
+      box-shadow: var(--panel-glow);
     }
     .section-title {
       font-size: 1.35rem;
@@ -54,7 +60,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--blue);
+      color: #2f52d7;
     }
     .field {
       width: 100%;
@@ -67,15 +73,15 @@
       outline: none;
       transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
     }
-    .field:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
-    input[type="range"] { accent-color: #1d4ed8; }
+    .field:focus { border-color: #3157e3; box-shadow: 0 0 0 3px rgba(49, 87, 227, 0.14); }
+    input[type="range"] { accent-color: #3459e6; }
     .btn {
       min-height: 42px;
       border-radius: 8px;
       font-weight: 700;
       transition: transform 150ms var(--ease), background 150ms var(--ease), border-color 150ms var(--ease);
     }
-    .btn:hover { transform: translateY(-1px); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 18px rgba(18, 31, 70, 0.12); }
     .btn:active { transform: translateY(0); }
     .branch-chip {
       min-height: 40px;
@@ -94,9 +100,9 @@
     }
     .branch-chip input { display: none; }
     .branch-chip:has(input:checked) {
-      border-color: #1d4ed8;
-      background: #eff6ff;
-      color: #1d4ed8;
+      border-color: #3459e6;
+      background: #ecf2ff;
+      color: #1e40af;
     }
     .data-row {
       display: grid;
@@ -146,11 +152,11 @@
   </style>
 </head>
 <body>
-  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+  <header class="sticky top-0 z-50 border-b border-slate-200/90 bg-white/88 backdrop-blur-lg">
     <div class="shell">
       <div class="flex h-16 items-center justify-between gap-4">
         <a href="#top" class="flex items-center gap-3">
-          <span class="grid h-10 w-10 place-items-center rounded-lg bg-blue-800 text-sm font-bold text-white">VCT</span>
+          <span class="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-blue-700 to-indigo-900 text-sm font-bold text-white shadow-md">VCT</span>
           <span>
             <span class="block text-sm font-bold text-slate-950">Vertex Career Times</span>
             <span class="hidden text-xs font-medium text-slate-500 sm:block">Engineering admissions platform</span>
@@ -186,7 +192,7 @@
   </header>
 
   <main id="top">
-    <section class="border-b border-slate-200 bg-white">
+    <section class="border-b border-slate-200 bg-gradient-to-b from-white to-blue-50/40">
       <div class="shell py-7">
         <div class="grid gap-5 lg:grid-cols-[1fr_0.78fr] lg:items-end">
           <div>
@@ -285,8 +291,8 @@
             <div id="predictError" class="hidden rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm font-semibold text-rose-700"></div>
 
             <div class="grid gap-2">
-              <button id="predictButton" class="btn bg-blue-700 px-5 py-3 text-sm text-white" type="submit">Predict colleges</button>
-              <button id="reportButton" class="btn border border-blue-200 bg-white px-5 py-3 text-sm text-blue-700" type="button">Generate counselling report</button>
+              <button id="predictButton" class="btn bg-gradient-to-r from-blue-700 to-indigo-800 px-5 py-3 text-sm text-white" type="submit">Predict colleges</button>
+              <button id="reportButton" class="btn border border-cyan-200 bg-cyan-50/60 px-5 py-3 text-sm text-cyan-800" type="button">Generate counselling report</button>
             </div>
           </div>
         </form>
@@ -350,7 +356,7 @@
           <option value="Unaided">Unaided</option>
           <option value="Autonomous">Autonomous</option>
         </select>
-        <button id="searchButton" class="btn bg-slate-900 px-5 py-3 text-sm text-white">Search</button>
+        <button id="searchButton" class="btn bg-gradient-to-r from-slate-900 to-slate-700 px-5 py-3 text-sm text-white">Search</button>
       </div>
 
       <div class="panel overflow-hidden">
@@ -671,7 +677,7 @@
           type: "bar",
           data: {
             labels: districtSeries.labels || districts.map((d) => d.district),
-            datasets: [{ label: "Colleges", data: districtSeries.values || districts.map((d) => d.total_colleges), backgroundColor: "#1d4ed8", borderRadius: 6 }]
+            datasets: [{ label: "Colleges", data: districtSeries.values || districts.map((d) => d.total_colleges), backgroundColor: "#3459e6", borderRadius: 6 }]
           },
           options: chartOptions(false)
         });
@@ -679,7 +685,7 @@
           type: "bar",
           data: {
             labels: branchSeries.labels || branches.map((b) => b.branch_code),
-            datasets: [{ label: "Average cutoff", data: branchSeries.values || branches.map((b) => Number(b.avg_cutoff).toFixed(2)), backgroundColor: "#0f172a", borderRadius: 6 }]
+            datasets: [{ label: "Average cutoff", data: branchSeries.values || branches.map((b) => Number(b.avg_cutoff).toFixed(2)), backgroundColor: "#0ea5b7", borderRadius: 6 }]
           },
           options: chartOptions(false)
         });
@@ -698,12 +704,12 @@
               datasets: [{
                 label: "Cutoff percentile",
                 data: trendSeries.values || row.trend.map((p) => p.cutoff_percentile),
-                borderColor: "#1d4ed8",
-                backgroundColor: "rgba(29, 78, 216, 0.08)",
+                borderColor: "#3459e6",
+                backgroundColor: "rgba(52, 89, 230, 0.1)",
                 fill: true,
                 tension: 0.25,
                 pointRadius: 4,
-                pointBackgroundColor: "#1d4ed8"
+                pointBackgroundColor: "#3459e6"
               }]
             },
             options: trendChartOptions(row.trend)
@@ -721,7 +727,7 @@
       return {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { backgroundColor: "#0f172a", padding: 11, cornerRadius: 8 } },
+        plugins: { legend: { display: false }, tooltip: { backgroundColor: "#121f46", padding: 11, cornerRadius: 8 } },
         scales: {
           x: { grid: { display: false }, ticks: { color: "#64748b", font: { weight: "600" } } },
           y: { beginAtZero, grid: { color: "rgba(148,163,184,0.22)" }, ticks: { color: "#64748b", font: { weight: "600" } } }

@@ -31,7 +31,7 @@ python -m uvicorn main:app --reload --port 8000
 If your terminal is in the project root, use this command instead:
 
 ```bash
-python -m uvicorn python-services.main:app --reload --port 8000
+python -m uvicorn main:app --app-dir python-services --reload --port 8000
 ```
 
 The frontend and API will be available at `http://localhost:8000`.  
